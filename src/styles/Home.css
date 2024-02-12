@@ -1,0 +1,46 @@
+.home-container {
+    position: relative;
+}
+
+.slider-content {
+    max-width: 100%;
+    width: 100vw;
+}
+
+.slider-content img {
+    margin: 0 auto;
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+    object-position: 0 35%;
+}
+
+.slider-btn {
+    all: unset;
+    position: absolute;
+    font-size: 2rem;
+    top: 0;
+    bottom: 0;
+    display: block;
+    padding: 1rem;
+    outline: 50px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.slider-btn:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.slider-btn > * {
+    stroke: var(--text-color1);
+    fill: var(--background-color1);
+}
+
+.slider-btn:first-of-type {
+    left: 0;
+}
+
+.slider-btn:last-of-type {
+    right: 0;
+}
