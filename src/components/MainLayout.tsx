@@ -9,8 +9,8 @@ import "../styles/MainLayout.css";
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="main-layout">
-        <div className="header-container">
+    <section className="main-layout">
+        <header className="header-container">
             <h1>Plain Pages</h1>
             <div className="header-nav">
                 <a href="">About</a>
@@ -18,16 +18,16 @@ const MainLayout: React.FC = () => {
                 <a href="">Contact</a>
             </div>
             <div className="header-userinfo">
-                <a href="">Sign Up <TbUser /></a>
-                <a href="">Log In <TbDoorEnter /></a>
+                <a href="">Sign Up <TbUser aria-hidden /></a>
+                <a href="">Log In <TbDoorEnter aria-hidden /></a>
             </div>
-        </div>
+        </header>
 
-        <div className="main-container">
+        <main className="main-container">
             <Home />
-        </div>
+        </main>
 
-        <div className="footer-container">
+        <footer className="footer-container">
             <div className="footer-column">
                 <h2>Plain Pages</h2>
                 <p className="footer-copyright">Copyright @2024</p>
@@ -40,14 +40,14 @@ const MainLayout: React.FC = () => {
             <div className="footer-column">
                 <h3>Follow us on:</h3>
                 <div className="footer-socialmedia">
-                    <span><TbBrandFacebookFilled /></span>
-                    <span><TbBrandInstagram /></span>
-                    <span><TbBrandTiktokFilled /></span>
-                    <span><TbBrandYoutubeFilled /></span>
+                    <span><TbBrandFacebookFilled aria-label="Go To Our Facebook" /></span>
+                    <span><TbBrandInstagram aria-label="Go To Our Instagram" /></span>
+                    <span><TbBrandTiktokFilled aria-label="Go To Our Tiktok" /></span>
+                    <span><TbBrandYoutubeFilled aria-label="Go To Our Youtube" /></span>
                 </div>
             </div>
-        </div>
-    </div>
+        </footer>
+    </section>
   )
 }
 

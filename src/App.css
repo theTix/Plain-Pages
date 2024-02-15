@@ -14,4 +14,9 @@
   font-family: 'Poppins', sans-serif;
   scrollbar-width: thin;
   scrollbar-color: black grey;
+  color: var(--text-color1);
+}
+
+button {
+  all: unset;
 }

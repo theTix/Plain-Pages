@@ -1,5 +1,6 @@
 .main-layout {
     min-height: 100vh;
+    max-width: 100vw;
     display: flex;
     flex-direction: column;
 }
@@ -16,7 +17,6 @@
 }
 
 .header-container h1, .header-nav a, .header-userinfo a {
-    color: var(--text-color1);
     text-decoration: none;
 }
 
@@ -63,6 +63,11 @@
     width: 100%;
 }
 
+.main-container {
+    width: 100%;
+    height: 800px;
+}
+
 /* Footer styling */
 .footer-container {
     background-color: var(--background-color1);
@@ -70,10 +75,10 @@
     flex-direction: row;
     justify-content: space-evenly;
     padding: 70px;
+    margin-top: 10px;
 }
 
 .footer-column {
-    color: var(--text-color1);
     display: flex;
     flex-direction: column;
 }

@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 //react-icons
-import { TbArrowBigLeft, TbArrowBigRight } from "react-icons/tb";
+import { TbArrowBigLeft, TbArrowBigRight, TbCircle, TbCircleFilled } from "react-icons/tb";
 
 //data
 import { ImageSlider } from "../data/ImagesSlider";
@@ -28,14 +28,45 @@ const Home: React.FC = () => {
     }
 
   return (
-    <div className="home-container">
-        <div className="slider-content" key={imgIndex}>
-            <img src={ImageSlider[imgIndex].img} alt=""/>
-            <h2></h2>
+    <section className="home-container" aria-label="Slider Of All Blog Themes">
+        <div className="slider-content">
+            {ImageSlider.map((slide) => (
+                <div 
+                    className="home-slider-slide" 
+                    key={slide.id} 
+                    style={{translate: `${-100 * imgIndex}%`}}
+                >
+                    <img src={slide.img} alt={slide.alt} aria-hidden={slide.id !== imgIndex}/>
+                    <h2 className="home-slider-title">{slide.title}</h2>
+                </div>
+            ))}
         </div>
-        <button onClick={showPrevImg} className="slider-btn"><TbArrowBigLeft /></button>
-        <button onClick={showNextImg} className="slider-btn"><TbArrowBigRight /></button>
-    </div>
+        <button 
+            onClick={showPrevImg} 
+            className="slider-btn"
+            aria-label="View Previous Slide Button"
+        >
+            <TbArrowBigLeft aria-hidden />
+        </button>
+        <button 
+            onClick={showNextImg} 
+            className="slider-btn"
+            aria-label="View Next Slide Button"
+        >
+            <TbArrowBigRight aria-hidden />
+        </button>
+        <div className="home-slider-nav">
+            {ImageSlider.map((slide) => (
+                <button 
+                key={slide.id} 
+                onClick={() => setImgIndex(slide.id)}
+                aria-label={`View Image ${slide.id + 1}`}
+                >
+                    {slide.id === imgIndex ? <TbCircleFilled aria-hidden /> : <TbCircle aria-hidden />}
+                </button>
+            ))}
+        </div>
+    </section>
   )
 }
 
