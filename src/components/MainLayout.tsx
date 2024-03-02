@@ -1,30 +1,89 @@
-//react-icons
-import { TbBrandFacebookFilled, TbBrandInstagram, TbBrandTiktokFilled, TbBrandYoutubeFilled, TbDoorEnter, TbDoorExit, TbUser } from "react-icons/tb";
+//react
+import { useContext, useEffect, useState } from "react";
 
-//components
-import Home from "./Home";
+//react-router-dom
+import { Link, NavLink, Outlet } from "react-router-dom";
+
+//react-icons
+import { TbBrandFacebookFilled, TbBrandInstagram, TbBrandTiktokFilled, TbBrandYoutubeFilled, TbDoorEnter, TbDoorExit, TbPlus, TbMinus, TbUser } from "react-icons/tb";
+
+//context
+import userContext, { useAuth } from "../contexts/context";
+
+//firebase
+import { auth } from "../firebase/firebase";
 
 //style
 import "../styles/MainLayout.css";
 
 const MainLayout: React.FC = () => {
+
+    const { username } = useContext(userContext);
+    const { authorized, setAuthorized } = useAuth();
+
+    const [ clickedIcon, setClickedIcon ] = useState(<TbPlus />)
+
+    const changeIcon = () => {
+        setClickedIcon(clickedIcon.type === TbPlus ? <TbMinus /> : <TbPlus />);
+    }
+
+    console.log(window.innerWidth);
+
+    useEffect(() => {
+        const makeDropDownMenu = () => {
+            const nav = document.getElementsByClassName("header-nav")[0] as HTMLElement;
+            const userInfo = document.getElementsByClassName("header-userinfo")[0] as HTMLElement;
+            
+            nav.style.maxHeight = window.innerWidth <= 880 && clickedIcon.type === TbPlus ? "0px" : "1000px";
+            userInfo.style.maxHeight = window.innerWidth <= 880 && clickedIcon.type === TbPlus ? "0px" : "1000px";
+        }
+    
+        // Initial call
+        makeDropDownMenu();
+    
+        window.addEventListener("resize", makeDropDownMenu);
+    
+        return () => {
+            window.removeEventListener("resize", makeDropDownMenu);
+        };
+    }, [clickedIcon]);
+    
+
   return (
     <section className="main-layout">
         <header className="header-container">
-            <h1>Plain Pages</h1>
+            <div className="header-title">
+                <h1><Link to="/">Plain Pages</Link></h1>
+                <button onClick={changeIcon}>{clickedIcon}</button>
+            </div>
             <div className="header-nav">
-                <a href="">About</a>
-                <a href="">Blog</a>
-                <a href="">Contact</a>
+                <NavLink to="/about">About</NavLink>
+                <NavLink to="/blogs">Blog</NavLink>
+                <NavLink to="/contact">Contact</NavLink>
             </div>
-            <div className="header-userinfo">
-                <a href="">Sign Up <TbUser aria-hidden /></a>
-                <a href="">Log In <TbDoorEnter aria-hidden /></a>
-            </div>
+            {authorized ? (
+                <div className="header-userinfo">
+                    <NavLink to="/"><span>{username} </span><TbUser aria-hidden /></NavLink>
+                    <a 
+                        href="/" 
+                        onClick={() => {
+                            auth.signOut();
+                            setAuthorized(false);
+                    }}>
+                        <span>Log Out </span><TbDoorExit aria-hidden />
+                    </a>
+                </div>
+            ) : (
+                <div className="header-userinfo">
+                    <NavLink to="/signup"><span>Sign Up </span><TbUser aria-hidden /></NavLink>
+                    <NavLink to="/login"><span>Log In </span><TbDoorEnter aria-hidden /></NavLink>
+                </div> 
+            )}
+            
         </header>
 
         <main className="main-container">
-            <Home />
+            <Outlet />
         </main>
 
         <footer className="footer-container">

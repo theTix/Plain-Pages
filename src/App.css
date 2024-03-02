@@ -4,7 +4,14 @@
   --text-color1: white;
   --text-color1-hover: rgb(207, 207, 207);
   --text-color2: rgb(161, 161, 161);
+  --text-color3: black;
+  --text-color-accentuated: rgb(255, 248, 153);
   --background-color1: black;
+  --background-color2: rgba(0, 0, 0, .5);
+  --background-color2hover: rgba(0, 0, 0, .7);
+  --background-container1: rgb(211, 211, 211);
+  --background-container1-transparent: rgba(211, 211, 211, .5);
+  --btn-color-hover: rgb(65, 65, 65);
 }
 
 *, *::after, *::before {
@@ -14,7 +21,8 @@
   font-family: 'Poppins', sans-serif;
   scrollbar-width: thin;
   scrollbar-color: black grey;
-  color: var(--text-color1);
+  text-decoration: none;
+  user-select: none;
 }
 
 button {

@@ -1,0 +1,131 @@
+.authentication-background {
+    width: 100%;
+    height: 100vh;
+    color: var(--text-color1);
+    overflow-x: hidden;
+}
+
+.authentication-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.authentication-container {
+    width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 5px black;
+    border-radius: 30px;
+    margin-top: 120px;
+    padding: 30px 80px;
+    background: rgba(255, 255, 255, .3);
+}
+
+.authentication-container > h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.authentication-container > form,
+.authentication-container > form > label,
+.authentication-container > form > input,
+.authentication.btn-enabled {
+    width: 100%;
+}
+
+.authentication-container > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.authentication-container > form > label > p {
+    font-size: 1.5rem;
+}
+
+.authentication-container > form > label > p,
+.authentication-container > form > input,
+.below-form-note > a {
+    margin-top: 15px;
+}
+
+.authentication-container > form > input,
+.authentication.btn-enabled {
+    border-radius: 10px;
+}
+
+.authentication-container > form > input {
+    padding: 7px 10px;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.authentication-btn {
+    text-align: center;
+    background-color: var(--background-color2);
+    padding: 10px 15px;
+    font-size: 1.6rem;
+    margin: 40px auto 0 auto;
+    border: solid 3px black;
+    border-radius: 20px;
+}
+
+.btn-enabled:hover {
+    background-color: var(--background-color2hover);
+    transition: background-color .3s ease-in-out;
+}
+
+@keyframes Click {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    50% {
+        transform: translateX(2px);
+    }
+    75% {
+        transform: translateX(-2px);
+    }
+}
+
+.btn-enabled:active {
+    transform: scale(0.95);
+}
+
+.btn-enabled:active::after {
+    content: "";
+    animation: Click .3s ease;
+}
+
+.authentication-btn.btn-enabled {
+    cursor: pointer;
+}
+
+.below-form-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.below-form-note > p {
+    margin-top: 20px;
+    font-size: 1.4rem;
+}
+
+.below-form-note > a {
+    color: var(--text-color1);
+    text-decoration: underline;
+}

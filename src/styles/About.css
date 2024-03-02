@@ -1,0 +1,114 @@
+.about-title-container {
+    width: 100%;
+    background-color: var(--background-container1);
+    padding: 30px;
+}
+
+.about-title-container > h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.about-pararaph-containers {
+    width: 65%;
+    margin: auto;
+    padding: 30px;
+}
+
+.about-pararaph-containers > p {
+    text-align: justify;
+    padding: 10px 0;
+    font-size: 1.4rem;
+}
+
+.about-pararaph-containers > p > span {
+    font-size: 4rem;
+    float:left;
+    margin-right: 15px;
+}
+
+.about-pararaph-containers > h2 {
+    padding: 30px 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.about-pararaph-containers > img {
+    width: 100%;
+    border-radius: 60% 46% 40% 42%;
+}
+
+@media screen and (max-width: 1200px) {
+    .about-pararaph-containers {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .about-title-container > h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-pararaph-containers > p {
+        font-size: 1.2rem;
+    }
+
+    .about-pararaph-containers > p > span {
+        font-size: 3rem;
+    }
+
+    .about-pararaph-containers > h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .about-pararaph-containers {
+        width: 85%;
+    }
+
+    .about-title-container > h1 {
+        font-size: 2.3rem;
+    }
+
+    .about-pararaph-containers > p {
+        font-size: 1.1rem;
+    }
+
+    .about-pararaph-containers > p > span {
+        font-size: 2.6rem;
+    }
+
+    .about-pararaph-containers > h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about-pararaph-containers {
+        width: 94%;
+    }
+
+    .about-title-container > h1 {
+        font-size: 2rem;
+    }
+
+    .about-pararaph-containers > p {
+        font-size: 1rem;
+    }
+
+    .about-pararaph-containers > p > span {
+        font-size: 2.3rem;
+    }
+
+    .about-pararaph-containers > h2 {
+        font-size: 1.3rem;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    .about-pararaph-containers {
+        width: 100%;
+    }
+}
