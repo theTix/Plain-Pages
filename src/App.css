@@ -11,6 +11,7 @@
   --background-color2hover: rgba(0, 0, 0, .7);
   --background-container1: rgb(211, 211, 211);
   --background-container1-transparent: rgba(211, 211, 211, .5);
+  --background-container2-transparent: rgba(83, 83, 83, 0.625);
   --btn-color-hover: rgb(65, 65, 65);
 }
 

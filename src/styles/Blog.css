@@ -1,0 +1,153 @@
+.blog-container {
+    width: 100%;
+    padding: 20px;
+    color: var(--text-color1);
+    background: url("./../assets/background-black.jpg");
+}
+
+.blog-contents {
+    width: 70%;
+    min-width: 700px;
+    text-align: justify;
+    margin: auto;
+    background-color: var(--background-container2-transparent);
+    padding: 60px;
+    border-radius: 20px;
+}
+
+.blog-contents > * {
+    margin: 20px 0;
+}
+
+.blog-category {
+    font-size: 1rem;
+}
+
+.blog-contents > h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.blog-contents > p {
+    line-height: 30px;
+    font-size: 1.2rem;
+}
+
+.blog-quote {
+    font-style: italic;
+    width: 70%;
+    margin: auto;
+    color: var(--text-color2);
+}
+
+.paragraph-first-letter {
+    float: left;
+    font-size: 4.2rem;
+    margin-right: 10px;
+    margin-bottom: 1px;
+}
+
+.blog-author {
+    text-align: right;
+}
+
+@media screen and (max-width: 1300px) {
+    .blog-contents > h1 {
+        font-size: 2.3rem;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .blog-contents > h1 {
+        font-size: 2.1rem;
+    }
+
+    .blog-contents > p {
+        font-size: 1.1rem;
+    }
+    
+    .paragraph-first-letter {
+        font-size: 3.6rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .blog-category {
+        font-size: .9rem;
+    }
+
+    .blog-contents > h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .blog-contents > h1 {
+        font-size: 1.6rem;
+    }
+
+    .blog-contents > p {
+        line-height: 25px;
+    }
+
+    .paragraph-first-letter {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .blog-contents {
+        width: 95%;
+        min-width: 280px;
+        padding: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .blog-contents {
+        padding: 40px;
+    }
+
+    .blog-category {
+        font-size: .8rem;
+    }
+
+    .blog-contents > h1 {
+        font-size: 1.4rem;
+    }
+
+    .blog-contents > p {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .blog-quote {
+        width: 80%;
+        font-size: .9rem !important;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .blog-contents {
+        padding: 30px;
+    }
+
+    .blog-contents > h1 {
+        font-size: 1.3rem;
+    }
+
+    .blog-quote {
+        width: 90%;
+        font-size: .8rem !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .blog-contents {
+        padding: 20px;
+    }
+
+    .blog-contents > h1 {
+        font-size: 1.2rem;
+    }
+}

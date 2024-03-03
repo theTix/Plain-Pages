@@ -12,6 +12,9 @@ import Welcome from './components/Welcome';
 import './App.css';
 import About from './components/About';
 import Blogs from './components/Blogs';
+import Blog from './components/Blog';
+import ListOfArticles from './components/ListOfArticles';
+import SelectiveListOfArticles from './components/SelectiveListOfArticles';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +35,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogs",
-        element: <Blogs />
+        element: <Blogs />,
+        children: [
+          {
+            path: "/blogs/category/:categoryId",
+            element: <SelectiveListOfArticles />
+          },
+          {
+            path: "/blogs/",
+            element: <ListOfArticles />
+          }
+        ]
+      },
+      {
+        path: "/blogs/:blogId",
+        element: <Blog />
       }
     ]
   },

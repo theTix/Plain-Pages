@@ -25,7 +25,7 @@
 }
 
 .welcome-section-container:hover {
-    background-color: rgba(83, 83, 83, 0.625);
+    background-color: var(--background-container2-transparent);
     transition: all .3s ease-in-out;
 }
 
@@ -40,7 +40,7 @@
 
 /* Welcome-welcome part */
 .welcome-welcome-part {
-    background-color: rgba(83, 83, 83, 0.625);
+    background-color: var(--background-container2-transparent);
     border-radius: 20px;
     padding: 20px;
 }
