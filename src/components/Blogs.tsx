@@ -19,9 +19,15 @@ const Blogs = () => {
       const categoriesContainer = document.getElementsByClassName("blogs-categories")[0] as HTMLElement;
       const filterIcon = document.getElementById("filter-icon") as HTMLElement;
 
-      categoriesContainer.style.maxHeight = window.innerWidth <= 900 && clicked ? "1000px" : "0";
-      categoriesContainer.style.padding = window.innerWidth <= 900 && clicked ? "10px 0" : "0";
-      filterIcon.style.backgroundColor = window.innerWidth <= 900 && clicked ? "black" : "transparent";
+      if(window.innerWidth <= 900) {
+        categoriesContainer.style.maxHeight = window.innerWidth <= 900 && clicked ? "1000px" : "0";
+        categoriesContainer.style.padding = window.innerWidth <= 900 && clicked ? "10px 0" : "0";
+        filterIcon.style.backgroundColor = window.innerWidth <= 900 && clicked ? "black" : "transparent";
+      } else {
+        categoriesContainer.style.maxHeight = "1000px";
+        categoriesContainer.style.padding = "10px 0";
+        filterIcon.style.backgroundColor = "transparent";
+      }
     }
 
     dropFilters();
@@ -32,12 +38,12 @@ const Blogs = () => {
       window.removeEventListener("resize", dropFilters);
     }
 
-  }, [clicked]);
+  }, [clicked, window.innerWidth]);
 
   return (
     <div className="blogs-container">
       <section className="blogs-container-description">
-        <h1>Blogs</h1>
+        <h1><NavLink to="/blogs">Articles</NavLink></h1>
         <p>Here you can find all the articles!</p>
         <p>Take a look!</p>
         <div className="filter-btn-container">

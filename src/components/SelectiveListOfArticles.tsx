@@ -1,14 +1,19 @@
 //react-router-dom
 import { Link, useParams } from "react-router-dom";
 
-//data
-import allBlogs from "./../data/allBlogs.ts";
+//components
 import Error from "./Error.tsx";
 
+//context
+import { useContext } from "react";
+import { articlesContext } from "../contexts/context.ts";
+
 const SelectiveListOfArticles = () => {
+    const { allBlogArticles } = useContext(articlesContext);
+
     const param = useParams();
     console.log(param);
-    const filteredBlogs = allBlogs.filter((article) => {
+    const filteredBlogs = allBlogArticles.filter((article) => {
         return param.categoryId === article.category;
     });
 

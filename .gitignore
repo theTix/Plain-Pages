@@ -21,11 +21,12 @@ src/assets/literature.jpg
 src/assets/programming.jpg
 src/assets/studying.jpg
 src/assets/teamwork.jpg
-src/assets/water.jpg
+src/assets/water.jpgs
 src/assets/waterfall.jpg
 src/assets/woman-hands.jpg
 
 src/data/images-home.ts
+src/data/allBlogs.ts
 
 # Editor directories and files
 .vscode/*

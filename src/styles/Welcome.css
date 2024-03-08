@@ -11,13 +11,17 @@
     width: 100%;
     min-width: 240px;
     margin-top: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     transition: all .3s ease-in-out;
     border-radius: 20px;
     cursor: pointer;
     padding: 40px 20px;
+}
+
+.welcome-section-container > a {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .welcome-section-container:first-of-type {
@@ -145,7 +149,7 @@
 }
 
 @media screen and (max-width: 1150px){
-    .welcome-section-container {
+    .welcome-section-container > a {
         flex-direction: column-reverse;
         margin-top: 60px;
     }

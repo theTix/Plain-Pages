@@ -1,7 +1,11 @@
+//styles
+import "./../styles/Error.css";
 
 const Error = () => {
   return (
-    <div>Error</div>
+    <div className="error-message">
+      <p>Page Not Found!</p>
+    </div>
   )
 }
 

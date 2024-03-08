@@ -4,6 +4,7 @@
     min-height: 100vh;
     padding: 40px;
     color: var(--text-color1);
+    height: 100%;
 }
 
 .blogs-container-description {
@@ -17,6 +18,10 @@
 .blogs-container-description > h1 {
     font-size: 4rem;
     margin-bottom: 10px;
+}
+
+.blogs-container-description > h1 > a {
+    color: var(--text-color1);
 }
 
 .blogs-container-description > p {
@@ -105,6 +110,7 @@
     align-items: center;
     color: var(--text-color1);
     transition: all .2s ease-in-out;
+    margin-top: 15px;
 }
 
 .blog-title-container > h2 {

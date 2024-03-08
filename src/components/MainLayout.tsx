@@ -15,6 +15,7 @@ import { auth } from "../firebase/firebase";
 
 //style
 import "../styles/MainLayout.css";
+import ArticlesContextProvider from "../contexts/ArticlesContextProvider";
 
 const MainLayout: React.FC = () => {
 
@@ -83,7 +84,9 @@ const MainLayout: React.FC = () => {
         </header>
 
         <main className="main-container">
-            <Outlet />
+            <ArticlesContextProvider>
+                <Outlet />
+            </ArticlesContextProvider>
         </main>
 
         <footer className="footer-container">

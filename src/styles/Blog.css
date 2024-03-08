@@ -21,6 +21,11 @@
 
 .blog-category {
     font-size: 1rem;
+    color: var(--text-color1);
+}
+
+.blog-category:hover {
+    color: gray;
 }
 
 .blog-contents > h1 {

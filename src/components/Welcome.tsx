@@ -8,6 +8,7 @@ import db from "./../firebase/firebase";
 //styles
 import "./../styles/Welcome.css";
 import userContext from "../contexts/context";
+import { NavLink } from "react-router-dom";
 
 type BlogTopic = {
     id: number,
@@ -47,20 +48,22 @@ const Welcome = () => {
 
         {blogTopics.map((topic) => (
             <section className="welcome-section-container" key={topic.id}>
-                <div className="welcome-section-image-cluster">
-                    <div className="welcome-image-container">
-                        <img src={topic.img1} alt={topic.alt1} />
+                <NavLink to={`/blogs/category/${topic.title.toLowerCase()}`}>
+                    <div className="welcome-section-image-cluster">
+                        <div className="welcome-image-container">
+                            <img src={topic.img1} alt={topic.alt1} />
+                        </div>
+                        <div className="welcome-image-container">
+                            <img src={topic.img2} alt={topic.alt2} />
+                        </div>
+                        <div className="welcome-image-container">
+                            <img src={topic.img3} alt={topic.alt3} />
+                        </div>
                     </div>
-                    <div className="welcome-image-container">
-                        <img src={topic.img2} alt={topic.alt2} />
+                    <div className="welcome-section-title-container">
+                        <h1>{topic.title}</h1>
                     </div>
-                    <div className="welcome-image-container">
-                        <img src={topic.img3} alt={topic.alt3} />
-                    </div>
-                </div>
-                <div className="welcome-section-title-container">
-                    <h1>{topic.title}</h1>
-                </div>
+                </NavLink>
             </section>
         ))}
 

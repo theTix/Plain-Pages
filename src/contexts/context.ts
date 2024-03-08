@@ -1,6 +1,8 @@
 //react
 import React, { useContext } from "react";
 
+import { BlogType } from "./ArticlesContextProvider";
+
 
 type userContextType = {
     username: string,
@@ -15,6 +17,12 @@ type authorizationContextType = {
 const userContext = React.createContext<userContextType>({
     username: "",
     setUsername: () => {}
+});
+
+export const articlesContext = React.createContext<{
+    allBlogArticles: BlogType[],
+}>({
+    allBlogArticles: [], 
 });
 
 export const authorizationContext = React.createContext<authorizationContextType>({
