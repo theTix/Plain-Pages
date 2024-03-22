@@ -95,9 +95,20 @@
     color: var(--text-color1-hover);
 }
 
+.header-nav a.active,
+.header-userinfo a.active {
+    color: var(--text-color-accentuated);
+}
+
 .header-nav a:hover::after, 
 .header-userinfo a:hover::after {
     background-color: var(--text-color1-hover);
+    width: 100%;
+}
+
+.header-nav a.active::after, 
+.header-userinfo a.active::after {
+    background-color: var(--text-color-accentuated);
     width: 100%;
 }
 

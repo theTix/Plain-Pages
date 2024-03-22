@@ -21,12 +21,12 @@ import "../styles/LogIn.css";
 const LogIn: React.FC = () => {
   const userRef = useRef<HTMLInputElement>(null);
 
-  const { setAuthorized } = useAuth();
+  const { authorized ,setAuthorized } = useAuth();
 
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const [success, setSuccess]= useState(false);
 
   const { setUsername } = useContext(userContext);
@@ -39,14 +39,21 @@ const LogIn: React.FC = () => {
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setUsername(user);
+
+    try{
+      await doSignInWIthEmailAndPassword(email, pass);
+      setSuccess(true);
+      setAuthorized(true);
+      setUsername(user);
+    } catch {
+      setError(true);
+    }
     setUser("");
     setEmail("");
     setPass("");
-    await doSignInWIthEmailAndPassword(email, pass);
-    setSuccess(true);
-    setAuthorized(true);
   }
+
+  console.log(authorized);
 
   return (
     <div className="authentication-background">
@@ -111,12 +118,16 @@ const LogIn: React.FC = () => {
               aria-required
               required
             />
+            <p className={error ? "invalid" : "hide"}>Incorrect information. Please try again.</p>
 
             <button className="authentication-btn btn-enabled">Log In</button>
           </form>
           <section className="below-form-note">
             <p>Don't Have An Account?</p>
-            <NavLink to="/signup">Sign Up</NavLink>
+            <span>
+              <NavLink to="/signup">Sign Up</NavLink>
+              <NavLink to="/">Home</NavLink>
+            </span>
           </section>
         </section>
       )}

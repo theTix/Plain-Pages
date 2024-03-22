@@ -152,8 +152,16 @@ const SignUp: React.FC = () => {
     if(!check1 || !check2 || !check3) {
       dispatch({type: "INVALID_ENTRY", payload: {value: "Invalid entry."}})
     } else {
-      dispatch({type: "VALID_ENTRY"});
-      await doCreateUserWithEmailAndPassword(state.email, state.pass);
+      try{
+        await doCreateUserWithEmailAndPassword(state.email, state.pass);
+        dispatch({type: "VALID_ENTRY"});
+      } catch(error: any) {
+        if(error.code === "auth/email-already-in-use") {
+          dispatch({type: "INVALID_ENTRY", payload: {value: "The e-mail address is already in use."}})
+        } else {
+          dispatch({type: "INVALID_ENTRY", payload: {value: "Something went wrong. Please try again."}})
+        }
+      }
     }
   }
 
@@ -179,11 +187,6 @@ const SignUp: React.FC = () => {
         </section>
       ) : (
         <section className="authentication-container">
-          <p
-            ref={errRef}
-            aria-live="assertive"
-            className={state.error !== "" ? "err-msg" : "offscreen"}
-          ></p>
           <h1>Sign Up</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="user">
@@ -304,6 +307,14 @@ const SignUp: React.FC = () => {
               <p><FaInfoCircle /> <span>Must match the first password input field.</span></p>
             </section>
 
+            <p
+            ref={errRef}
+            aria-live="assertive"
+            className={state.error !== "" ? "err-msg invalid" : "offscreen"}
+            >
+              {state.error}
+            </p>
+
             <button
               disabled={!state.validName || !state.validEmail || !state.validPass || !state.validRepeat ? true : false}
               aria-disabled={!state.validName || !state.validEmail || !state.validPass || !state.validRepeat ? true : false}
@@ -316,7 +327,10 @@ const SignUp: React.FC = () => {
 
           <section className="below-form-note">
             <p>Already Have an Account?</p>
-            <NavLink to="/login">Log In</NavLink>
+            <span>
+              <NavLink to="/login">Log In</NavLink>
+              <NavLink to="/">Home</NavLink>
+            </span>
           </section>
         </section>
       )}

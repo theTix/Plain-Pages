@@ -39,7 +39,7 @@ const Welcome = () => {
     <div className="welcome-page">
         <section className="welcome-section-container">
             <div className="welcome-welcome-part">
-                <h1>{username === "" ? "Welcome!" : `Welcome, ${username}!`}</h1>
+                <h1>{username === null || username === "" ? "Welcome!" : `Welcome, ${username}!`}</h1>
                 <p>This is <span>Plain Pages</span>. We offer a wide variety of articles on different topics that mght interest you!</p>
                 <p>Take a look yourself!</p>
                 <h2>Read About:</h2>

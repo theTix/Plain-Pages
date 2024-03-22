@@ -49,6 +49,7 @@ const MainLayout: React.FC = () => {
         };
     }, [clickedIcon]);
     
+    console.log(authorized);
 
   return (
     <section className="main-layout">
@@ -62,9 +63,9 @@ const MainLayout: React.FC = () => {
                 <NavLink to="/blogs">Blog</NavLink>
                 <NavLink to="/contact">Contact</NavLink>
             </div>
-            {authorized ? (
+            {authorized && username !== null ? (
                 <div className="header-userinfo">
-                    <NavLink to="/"><span>{username} </span><TbUser aria-hidden /></NavLink>
+                    <NavLink to="/profile"><span>{username} </span><TbUser aria-hidden /></NavLink>
                     <a 
                         href="/" 
                         onClick={() => {

@@ -1,15 +1,13 @@
 //react
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 
 //context
 import userContext from "./context.ts";
 
-type UserContextProviderProps = {
-  children: React.ReactNode
-}
+type UserContextProviderProps = PropsWithChildren;
 
 export const UserContextProvider: React.FC<UserContextProviderProps> = ({children}) => {
-    const [ username, setUsername ] = useState("");
+    const [ username, setUsername ] = useState<string | null>(null);
 
   return (
     <userContext.Provider value={{username, setUsername}}>

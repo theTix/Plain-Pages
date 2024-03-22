@@ -15,6 +15,8 @@ import Blogs from './components/Blogs';
 import Blog from './components/Blog';
 import ListOfArticles from './components/ListOfArticles';
 import SelectiveListOfArticles from './components/SelectiveListOfArticles';
+import Profile from './components/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -35,21 +37,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogs",
-        element: <Blogs />,
+        element: <ProtectedRoute>
+            <Blogs />
+          </ProtectedRoute>,
         children: [
           {
             path: "/blogs/category/:categoryId",
-            element: <SelectiveListOfArticles />
+            element: <ProtectedRoute>
+              <SelectiveListOfArticles />
+            </ProtectedRoute>
           },
           {
             path: "/blogs/",
-            element: <ListOfArticles />
+            element: <ProtectedRoute>
+              <ListOfArticles />
+            </ProtectedRoute> 
           }
         ]
       },
       {
         path: "/blogs/:blogId",
-        element: <Blog />
+        element: <ProtectedRoute>
+          <Blog />
+        </ProtectedRoute> 
+      },
+      {
+        path: "/profile",
+        element: <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute> 
       }
     ]
   },

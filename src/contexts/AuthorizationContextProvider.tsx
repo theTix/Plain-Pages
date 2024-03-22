@@ -1,17 +1,15 @@
 //react
-import { useEffect, useState } from "react";
+import { PropsWithChildren, useContext, useEffect, useState } from "react";
 
 //context
-import { authorizationContext } from "./context.ts";
+import userContext, { authorizationContext } from "./context.ts";
 
 //firebase
 import { auth } from "../firebase/firebase.ts";
 import { onAuthStateChanged } from "firebase/auth";
 
 
-type AuthContextProviderProps = {
-    children: React.ReactNode
-}
+type AuthContextProviderProps = PropsWithChildren;
 
 console.log()
 
@@ -19,6 +17,7 @@ export const AuthorizationContextProvider: React.FC<AuthContextProviderProps> = 
     const [ currentUser, setCurrentUser ] = useState<any>(null);
     const [ authorized, setAuthorized ] = useState<boolean>(false);
     const [ loading, setLoading ] = useState<boolean>(true);
+    const {username} = useContext(userContext);
 
     console.log(currentUser);
 
@@ -28,7 +27,7 @@ export const AuthorizationContextProvider: React.FC<AuthContextProviderProps> = 
     }, []);
 
     async function initializeUser(user: any) {
-      if (user) {
+      if (user && username !== null) {
         setCurrentUser({ ...user });
         setAuthorized(true);
       } else {

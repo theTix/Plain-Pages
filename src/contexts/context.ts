@@ -5,8 +5,8 @@ import { BlogType } from "./ArticlesContextProvider";
 
 
 type userContextType = {
-    username: string,
-    setUsername: (username: string) => void
+    username: string | null,
+    setUsername: (username: string | null) => void
 }
 
 type authorizationContextType = {
@@ -14,8 +14,13 @@ type authorizationContextType = {
     setAuthorized: (authorized: boolean) => void
 }
 
+type descriptionContextType = {
+    description: string,
+    setDescription: (description: string) => void
+}
+
 const userContext = React.createContext<userContextType>({
-    username: "",
+    username: null,
     setUsername: () => {}
 });
 
@@ -28,6 +33,11 @@ export const articlesContext = React.createContext<{
 export const authorizationContext = React.createContext<authorizationContextType>({
     authorized: false,
     setAuthorized: () => {}
+})
+
+export const descriptionContext = React.createContext<descriptionContextType>({
+    description: "",
+    setDescription: () => {}
 })
 
 export function useAuth() {
