@@ -17,6 +17,7 @@ import ListOfArticles from './components/ListOfArticles';
 import SelectiveListOfArticles from './components/SelectiveListOfArticles';
 import Profile from './components/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import Error from './components/Error';
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
               <ListOfArticles />
             </ProtectedRoute> 
           }
-        ]
+        ],
       },
       {
         path: "/blogs/:blogId",
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
         element: <ProtectedRoute>
           <Profile />
         </ProtectedRoute> 
+      },
+      {
+        path: "*",
+        element: <Error />
       }
     ]
   },

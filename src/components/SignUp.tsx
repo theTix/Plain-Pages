@@ -90,6 +90,10 @@ const reducer = (state: InitialStateType,action: ActionType) => {
         ...state,
         error: action.payload.value
       }
+    default:
+      return {
+        ...state
+      }
   }
 }
 
@@ -164,9 +168,7 @@ const SignUp: React.FC = () => {
       }
     }
   }
-
-  console.log(state.success);
-
+  
   return (
     <div className="authentication-background">
       <video 

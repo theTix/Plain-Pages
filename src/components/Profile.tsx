@@ -8,7 +8,7 @@ import { RiSave3Fill } from "react-icons/ri";
 
 //firebase
 import { ImageDB, db } from "./../firebase/firebase";
-import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -21,26 +21,14 @@ import blankImg from "./../assets/blank.jpg";
 //style
 import "./../styles/Profile.css"
 
-type UploadResult = {
-    fileName: string;
-    downloadURL: string;
-};
-
-
-const UploadImage = async (userUid: any, newImageFile: any, prevImageFileName: any): Promise<UploadResult> => {
+const UploadImage = async (userUid: any, newImageFile: any) => {
     try {
         const newImageFileName = `${userUid}`;
-
-        if(prevImageFileName) {
-            const prevImageRef = ref(ImageDB, `ProfileImages/${userUid}/${prevImageFileName}`);
-            await deleteObject(prevImageRef);
-        }
-
         const newImageRef = ref(ImageDB, `ProfileImages/${userUid}/${newImageFileName}`);
+
         await uploadBytes(newImageRef, newImageFile);
 
         const downloadURL = await getDownloadURL(newImageRef);
-        console.log(downloadURL);
 
         return { fileName: newImageFileName, downloadURL };
     } catch(error) {
@@ -51,15 +39,13 @@ const UploadImage = async (userUid: any, newImageFile: any, prevImageFileName: a
 
 const Profile = () => {
     const { username } = useContext(userContext);
+    const {description, setDescription} = useContext(descriptionContext);
     
-    const [ descriptionInfo, setDescriptionInfo ] = useState("");
     const [ isEditing, setIsEditing ] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
-    const {description, setDescription} = useContext(descriptionContext);
     
     const [userUid, setUserUid] = useState("");
     const [newImageFile, setNewImageFile] = useState<any>(null);
-    const [prevImageFileName, setPrevImageFileName] = useState<any>(null);
     const [imageUrl, setImageUrl] = useState<any>("");
     
     useEffect(() => {
@@ -76,12 +62,10 @@ const Profile = () => {
         try{
             const docRef = doc(db, "users", userId);
             const docSnap = await getDoc(docRef);
-            console.log(docSnap.data());
             if(docSnap.exists()) {
                 const data = docSnap.data();
                 if (data.imageUrl) {
                     setImageUrl(data.imageUrl);
-                    console.log(data.imageUrl)
                 }
             }
         } catch(error) {
@@ -92,11 +76,9 @@ const Profile = () => {
     const handleImgSave = async () => {
         if(userUid) {
             try {
-                const {fileName, downloadURL} = await UploadImage(userUid, newImageFile, prevImageFileName);
+                const {downloadURL} = await UploadImage(userUid, newImageFile);
 
                 await updateImageUrl(userUid, downloadURL);
-
-                setPrevImageFileName(fileName);
 
                 console.log("Image uploaded successfully!");
             } catch(error) {
@@ -126,7 +108,6 @@ const Profile = () => {
                     "userDescription": description
                 }, {merge: true});
                 setDescription(description);
-                setDescriptionInfo(description);
             }
         } catch(error){
             console.error("Error uploading the description: ", error);
@@ -141,7 +122,6 @@ const Profile = () => {
                 const data = docSnap.data();
                 if(data.userDescription) {
                     setDescription(data.userDescription);
-                    setDescriptionInfo(data.userDescription);
                 }
             }
         } catch(error){
@@ -150,14 +130,13 @@ const Profile = () => {
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setDescriptionInfo(e.target.value);
-        setDescription(descriptionInfo);
+        setDescription(e.target.value);
     }
 
-    const handleSave= async() => {
+    const handleSave= async(e:any) => {
         setIsEditing(isEditing ? false : true);
-        setDescription(descriptionInfo);
-        await uploadDescription(userUid, descriptionInfo);
+        setDescription(e.target.value);
+        await uploadDescription(userUid, description);
     }
 
     const handleEdit = () => {
@@ -189,13 +168,14 @@ const Profile = () => {
             </div>
             
             <h3 className="profile-name">{username}</h3>
+
             {isEditing ? (
                 <label className="label-for-input" htmlFor="description">
                     <textarea 
                         name="description" 
                         id="description"
                         className="user-description"
-                        value={descriptionInfo}
+                        value={description}
                         onChange={handleChange}
                         cols={25} 
                         rows={5}

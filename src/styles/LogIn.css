@@ -141,3 +141,90 @@
     color: var(--text-color1);
     text-decoration: underline;
 }
+
+@media screen and (max-width: 900px) {
+    .authentication-container > h1 {
+        font-size: 2.6rem;
+    }
+
+    .authentication-container > form > label > p {
+        font-size: 1.3rem;
+    }
+
+    .authentication-container > form > input {
+        font-size: 1.1rem;
+    }
+
+    .authentication-btn {
+        font-size: 1.4rem;
+    }
+
+    .below-form-note > p {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .authentication-container {
+        margin-top: 90px;
+        min-width: 300px;
+        width: 80%;
+    }
+
+    .authentication-container > h1 {
+        font-size: 2.4rem;
+    }
+
+    .authentication-container > form > label > p {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .authentication-container {
+        margin-top: 60px;
+        width: 85%;
+        padding: 30px 60px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .authentication-container {
+        margin-top: 40px;
+        width: 90%;
+    }
+
+    .authentication-container > h1 {
+        font-size: 2.3rem;
+    }
+
+    .authentication-btn {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .authentication-container {
+        width: 95%;
+        padding: 30px 40px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .authentication-container > h1 {
+        font-size: 2.2rem;
+    }
+
+    .authentication-container > form > label > p {
+        font-size: 1.1rem;
+    }
+
+    .authentication-container > form > input,
+    .below-form-note > p {
+        font-size: 1rem;
+    }
+
+    .authentication-btn {
+        font-size: 1.2rem;
+    }
+}

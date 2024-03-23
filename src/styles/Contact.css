@@ -1,5 +1,6 @@
 .contact-container {
     background: url(./../assets/background.mp4);
+    width: 100%;
 }
 
 .contact-title-container {

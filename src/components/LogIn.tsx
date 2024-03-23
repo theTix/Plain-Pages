@@ -1,5 +1,5 @@
 //react
-import { useContext, useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useReducer, useRef} from "react"
 
 //react-router-dom
 import { NavLink } from "react-router-dom";
@@ -17,19 +17,68 @@ import { doSignInWIthEmailAndPassword } from "../firebase/auth";
 //styles
 import "../styles/LogIn.css";
 
+const INITIAL_STATE: InitialStateType = {
+  user: "",
+  email: "",
+  pass: "",
+  error: false,
+  success: false
+}
+
+type InitialStateType = {
+  user: string,
+  email: string,
+  pass: string,
+  error: boolean,
+  success: boolean
+}
+
+type ActionType = 
+  | {type: "HANDLE_INPUT", payload: {name: string, value: string}}
+  | {type: "VALID_ENTRY"}
+  | {type: "INVALID_ENTRY"}
+  | {type: "CLEAR_INFO"};
+
+
+const reducer = (state: InitialStateType, action: ActionType) => {
+  switch(action.type) {
+    case "HANDLE_INPUT":
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value
+      }
+    case "VALID_ENTRY":
+      return {
+        ...state,
+        success: true
+      }
+    case "INVALID_ENTRY":
+      return {
+        ...state,
+        error: true
+      }
+    case "CLEAR_INFO":
+      return {
+        ...state,
+        user: "",
+        email: "",
+        pass: ""
+      }
+    default:
+      return {
+        ...state
+      }
+  }
+}
+
 
 const LogIn: React.FC = () => {
   const userRef = useRef<HTMLInputElement>(null);
 
-  const { authorized ,setAuthorized } = useAuth();
-
-  const [user, setUser] = useState("");
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [error, setError] = useState(false);
-  const [success, setSuccess]= useState(false);
-
+  const { setAuthorized } = useAuth();
   const { setUsername } = useContext(userContext);
+
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   useEffect(() => {
     if(userRef.current) {
@@ -41,19 +90,15 @@ const LogIn: React.FC = () => {
     e.preventDefault();
 
     try{
-      await doSignInWIthEmailAndPassword(email, pass);
-      setSuccess(true);
+      await doSignInWIthEmailAndPassword(state.email, state.pass);
+      dispatch({type: "VALID_ENTRY"});
       setAuthorized(true);
-      setUsername(user);
+      setUsername(state.user);
     } catch {
-      setError(true);
+      dispatch({type: "INVALID_ENTRY"});
     }
-    setUser("");
-    setEmail("");
-    setPass("");
+    dispatch({type: "CLEAR_INFO"});
   }
-
-  console.log(authorized);
 
   return (
     <div className="authentication-background">
@@ -65,7 +110,7 @@ const LogIn: React.FC = () => {
         playsInline 
         src={Background}
       />
-      {success ? (
+      {state.success ? (
         <section className="authentication-container">
           <h1>You're Successfully Logged In!</h1>
           <section className="below-form-note">
@@ -83,8 +128,9 @@ const LogIn: React.FC = () => {
             <input 
               type="text" 
               placeholder="Username"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
+              name="user"
+              onChange={(e) => dispatch({type: "HANDLE_INPUT", payload: {name: e.target.name, value: e.target.value}})}
+              value={state.user}
               ref={userRef}
               autoComplete="off"
               id="username"
@@ -98,10 +144,11 @@ const LogIn: React.FC = () => {
             <input 
               type="email"
               id="email"
+              name="email"
               placeholder="Email"
               autoComplete="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              onChange={(e) => dispatch({type: "HANDLE_INPUT", payload: {name: e.target.name, value: e.target.value}})}
+              value={state.email}
               aria-required
               required
             />
@@ -112,13 +159,14 @@ const LogIn: React.FC = () => {
             <input 
               type="password" 
               id="pass"
+              name="pass"
               placeholder="Password"
-              onChange={(e) => setPass(e.target.value)}
-              value={pass}
+              onChange={(e) => dispatch({type: "HANDLE_INPUT", payload: {name: e.target.name, value: e.target.value}})}
+              value={state.pass}
               aria-required
               required
             />
-            <p className={error ? "invalid" : "hide"}>Incorrect information. Please try again.</p>
+            <p className={state.error ? "invalid" : "hide"}>Incorrect information. Please try again.</p>
 
             <button className="authentication-btn btn-enabled">Log In</button>
           </form>

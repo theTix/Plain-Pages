@@ -4,7 +4,8 @@ import "./../styles/Error.css";
 const Error = () => {
   return (
     <div className="error-message">
-      <p>Page Not Found!</p>
+      <h1>Page Not Found!</h1>
+      <p>Please try again later.</p>
     </div>
   )
 }
