@@ -7,9 +7,6 @@ import { NavLink } from "react-router-dom";
 //react-icons
 import { FaCheck, FaInfoCircle, FaTimes } from "react-icons/fa";
 
-//assets
-import Background from "./../assets/background.mp4"
-
 //firebase
 import { doCreateUserWithEmailAndPassword } from "../firebase/auth";
 
@@ -177,7 +174,7 @@ const SignUp: React.FC = () => {
         muted 
         loop 
         playsInline 
-        src={Background}
+        src={"https://firebasestorage.googleapis.com/v0/b/plain-pages.appspot.com/o/OtherImages%2Fbackground.mp4?alt=media&token=28f8edce-930a-40ac-a705-2cdda06c719e"}
       />
       {state.success ? (
         <section className="authentication-container">

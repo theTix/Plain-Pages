@@ -12,21 +12,8 @@ dist
 dist-ssr
 *.local
 
-src/assets/balloons.jpg
-src/assets/books.jpg
-src/assets/camera.jpg
-src/assets/help.jpg
-src/assets/knitting.jpg
-src/assets/literature.jpg
-src/assets/programming.jpg
-src/assets/studying.jpg
-src/assets/teamwork.jpg
-src/assets/water.jpgs
-src/assets/waterfall.jpg
-src/assets/woman-hands.jpg
-
-src/data/images-home.ts
-src/data/allBlogs.ts
+src/assets/*
+src/data/*
 
 # Editor directories and files
 .vscode/*

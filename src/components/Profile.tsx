@@ -15,13 +15,10 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 //context
 import userContext, { descriptionContext } from "../contexts/context"
 
-//assets
-import blankImg from "./../assets/blank.jpg";
-
 //style
 import "./../styles/Profile.css"
 
-const UploadImage = async (userUid: any, newImageFile: any) => {
+const UploadImage = async (userUid: string, newImageFile: any) => {
     try {
         const newImageFileName = `${userUid}`;
         const newImageRef = ref(ImageDB, `ProfileImages/${userUid}/${newImageFileName}`);
@@ -58,7 +55,7 @@ const Profile = () => {
         }
     }, []);
 
-    const fetchImageInfo = async(userId:any) => {
+    const fetchImageInfo = async(userId: string) => {
         try{
             const docRef = doc(db, "users", userId);
             const docSnap = await getDoc(docRef);
@@ -88,7 +85,7 @@ const Profile = () => {
         }
     }
 
-    const updateImageUrl = async(userId:any, downloadURL: any) => {
+    const updateImageUrl = async(userId: string, downloadURL: string) => {
         try{
             const docRef = doc(db, "users", userId);
             await setDoc(docRef, {
@@ -100,7 +97,7 @@ const Profile = () => {
         }
     }
 
-    const uploadDescription = async(userId:any, description: any) => {
+    const uploadDescription = async(userId: string, description: string) => {
         try{
             const docRef = doc(db, "users", userId);
             if(docRef) {
@@ -114,7 +111,7 @@ const Profile = () => {
         }
     }
 
-    const fetchDescription = async(userId: any) => {
+    const fetchDescription = async(userId: string) => {
         try{
             const docRef = doc(db, "users", userId);
             const docSnap = await getDoc(docRef);
@@ -133,9 +130,8 @@ const Profile = () => {
         setDescription(e.target.value);
     }
 
-    const handleSave= async(e:any) => {
+    const handleSave= async() => {
         setIsEditing(isEditing ? false : true);
-        setDescription(e.target.value);
         await uploadDescription(userUid, description);
     }
 
@@ -150,7 +146,7 @@ const Profile = () => {
     <div className="profile-container-background">
         <div className="profile-container">
             <div className="profile-img">
-                <img src={imageUrl || blankImg} alt="Profile image" />
+                <img src={imageUrl || "https://firebasestorage.googleapis.com/v0/b/plain-pages.appspot.com/o/OtherImages%2Fblank.jpg?alt=media&token=9c207aa3-a8e3-4247-b78b-407613b406e6"} alt="Profile image" />
             </div>
             
             <div className="imgConfig">

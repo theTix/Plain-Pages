@@ -1,16 +1,10 @@
 //react-icons
 import { TbMailFilled, TbPhoneFilled } from "react-icons/tb";
 
-//assets
-import customerSupport from "./../assets/customer-support.jpg";
-
 //styles
 import "./../styles/Contact.css";
 
 const Contact = () => {
-
-    
-
   return (
     <div className="contact-container">
        <div className="contact-title-container">
@@ -19,7 +13,7 @@ const Contact = () => {
                 <p>Have a question? We'd love to hear it!</p>
             </section>
             <div className="contact-title-img">
-                <img src={customerSupport} alt="" />
+                <img src={"https://firebasestorage.googleapis.com/v0/b/plain-pages.appspot.com/o/OtherImages%2Fcustomer-support.jpg?alt=media&token=f451055d-24f2-4ddd-a6fa-f41897bfebda"} alt="Woman with headset in customer support." />
             </div>
        </div>
 

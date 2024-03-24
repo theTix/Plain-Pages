@@ -7,7 +7,7 @@ import allBlogs from "./../data/allBlogs.ts";
 const ListOfArticles = () => {
   return (
     <div>
-        {allBlogs.map((blog:any) => (
+        {allBlogs.map((blog) => (
           <div key={blog.id}>
             <Link to={`${blog.id}`} className="blog-title-container">
               <h2>{blog.title}</h2>

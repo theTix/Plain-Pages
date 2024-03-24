@@ -1,6 +1,3 @@
-//assets
-import team from "./../assets/meet-the-team.jpg";
-
 //styles
 import "./../styles/About.css";
 
@@ -16,7 +13,7 @@ const About = () => {
             <h2>Our mission</h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum ea tempora, fugiat iste recusandae illum in quibusdam officiis iure ad nulla, impedit, praesentium nihil natus nemo quia at dolor. Velit repudiandae repellat iste et explicabo earum est cum, doloremque unde neque illo labore quos. Sint consectetur distinctio fugit non vel laborum sapiente illo laudantium at? Sunt a sequi, doloribus deleniti omnis quisquam sapiente, eaque vel vero corrupti dolorem, suscipit dolores cumque molestias quas saepe numquam dicta minus. Magni obcaecati nesciunt a unde atque dolorem fugiat provident consequatur corporis ea deserunt, eum autem, numquam quae. Ducimus voluptatum fugit rem ut ipsum!</p>
             <h2>Meet the team</h2>
-            <img src={team} alt="" />
+            <img src={"https://firebasestorage.googleapis.com/v0/b/plain-pages.appspot.com/o/OtherImages%2Fmeet-the-team.jpg?alt=media&token=a70e1262-6db1-47ff-be56-c0642ae05f7a"} alt="Image of the whole team smiling and showing their team spirit." />
         </div>
     </div>
   )

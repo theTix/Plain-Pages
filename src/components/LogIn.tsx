@@ -4,9 +4,6 @@ import { useContext, useEffect, useReducer, useRef} from "react"
 //react-router-dom
 import { NavLink } from "react-router-dom";
 
-//assets
-import Background from "./../assets/background.mp4";
-
 //context
 import userContext, { useAuth } from "../contexts/context";
 
@@ -108,7 +105,7 @@ const LogIn: React.FC = () => {
         muted 
         loop 
         playsInline 
-        src={Background}
+        src={"https://firebasestorage.googleapis.com/v0/b/plain-pages.appspot.com/o/OtherImages%2Fbackground.mp4?alt=media&token=28f8edce-930a-40ac-a705-2cdda06c719e"}
       />
       {state.success ? (
         <section className="authentication-container">
