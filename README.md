@@ -15,10 +15,6 @@ The images and descriptions are stored in Firebase and they stay relevant for th
 
 It's fully responsive and adjusted for different screen sizes:
 
-1920 x 1335:
-
-![Screenshot of the website's homepage and how it looks when it is opened in a browser](https://drive.google.com/uc?id=1pv2KJUjPHBk7c-FIgP1U_iHEFVR1bwqf)
-
 880 x 2050:
 
 ![Screenshot of the website's homepage and how it looks when it is opened in a browser](https://drive.google.com/uc?id=1SujkfmpLaqIwVbwIWiXgIynDudFdPZdO)
