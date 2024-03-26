@@ -99,11 +99,15 @@ Go to [Node.js website](https://nodejs.org/en) and install it.
 
 ## Installation
 
+## Installation
+
 ```
 $ git clone "https://github.com/theTix/Plain-Pages.git"
 $ cd Plain-Pages
 $ npm install
 ```
+
+## Watch
 
 ## Watch
 
