@@ -1,3 +1,6 @@
+//react
+import { useContext } from "react";
+
 //react-router-dom
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -8,6 +11,9 @@ import MainLayout from './components/MainLayout';
 import SignUp from './components/SignUp';
 import Welcome from './components/Welcome';
 
+//context
+import userContext, { useAuth } from "./contexts/context";
+
 //style
 import './App.css';
 import About from './components/About';
@@ -16,10 +22,42 @@ import Blog from './components/Blog';
 import ListOfArticles from './components/ListOfArticles';
 import SelectiveListOfArticles from './components/SelectiveListOfArticles';
 import Profile from './components/Profile';
-import ProtectedRoute from './components/ProtectedRoute';
 import Error from './components/Error';
 
-const router = createBrowserRouter([
+const routerNotAuthorized = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Welcome />
+      },
+      {
+        path: "/contact",
+        element: <Contact />
+      },
+      {
+        path: "/about",
+        element: <About />
+      },
+      {
+        path: "*",
+        element: <Error />
+      }
+    ]
+  },
+  {
+    path: "/login",
+    element: <LogIn />
+  },
+  {
+    path: "/signup",
+    element: <SignUp />
+  }
+]);
+
+const routerAuthorized = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
@@ -38,35 +76,25 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogs",
-        element: <ProtectedRoute>
-            <Blogs />
-          </ProtectedRoute>,
+        element: <Blogs />,
         children: [
           {
             path: "/blogs/category/:categoryId",
-            element: <ProtectedRoute>
-              <SelectiveListOfArticles />
-            </ProtectedRoute>
+            element: <SelectiveListOfArticles />
           },
           {
             path: "/blogs/",
-            element: <ProtectedRoute>
-              <ListOfArticles />
-            </ProtectedRoute> 
+            element: <ListOfArticles />
           }
         ],
       },
       {
         path: "/blogs/:blogId",
-        element: <ProtectedRoute>
-          <Blog />
-        </ProtectedRoute> 
+        element: <Blog />
       },
       {
         path: "/profile",
-        element: <ProtectedRoute>
-          <Profile />
-        </ProtectedRoute> 
+        element: <Profile />
       },
       {
         path: "*",
@@ -85,9 +113,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const { username } = useContext(userContext);
+  const { authorized } = useAuth();
+  
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={authorized && username !== null ? routerAuthorized : routerNotAuthorized} />
     </>
   )
 }

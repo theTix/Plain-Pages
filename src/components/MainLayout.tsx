@@ -60,7 +60,7 @@ const MainLayout: React.FC = () => {
             </div>
             <div className="header-nav">
                 <NavLink to="/about">About</NavLink>
-                <NavLink to="/blogs">Blog</NavLink>
+                <NavLink to={authorized && username !== null ? "/blogs" : "/login"}>Blog</NavLink>
                 <NavLink to="/contact">Contact</NavLink>
             </div>
             {authorized && username !== null ? (
